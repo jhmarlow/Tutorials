@@ -1,2 +1,2 @@
 # Tutorials
-First repo
+Repository to store programming tutorials
