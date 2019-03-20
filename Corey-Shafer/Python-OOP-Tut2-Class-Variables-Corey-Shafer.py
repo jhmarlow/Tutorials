@@ -18,3 +18,4 @@ emp_1 = Employee('corey','shafer', 50000)
 print(emp_1.pay)
 emp_1.apply_raise()
 print(emp_1.pay)
+
