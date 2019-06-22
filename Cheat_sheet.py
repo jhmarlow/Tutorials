@@ -15,3 +15,10 @@ press F2
 # Refactor file
 select
 press Ctrl + F2
+
+# Define linting strength by creating a .pylintrc file and enable/disable
+.pylintrc
+
+# Capture requirements
+requirements.txt
+pip freeze

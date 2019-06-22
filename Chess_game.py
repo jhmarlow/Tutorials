@@ -81,21 +81,42 @@ class make_move():
         self.Board[self.x2][self.y2] = 2
         return init_board
 
+
+class terminal_input():
     
+    def __init__():
+        pass
+    
+    def position_to_start(self):
+        var_row = input("Please enter row: ")
+        var_col = input("Please enter column: ")
+        print("You entered:({},{}) to start".format(var_row, var_col))
+
+        position_to_start = [var_row, var_col]
+        return position_to_start
+
+    def position_to_finish(self):
+        var_row = input("Please enter row: ")
+        var_col = input("Please enter column: ")
+        print("You entered:({},{}) to finish".format(var_row, var_col))
+
+        position_to_finish = [var_row, var_col]
+        return position_to_finish
+
+
+# Create board
 brd = init_board(8, 8)
 init_board = brd.create_board()
 init_board = brd.rename_rows(init_board)
 
+# Create pieces
 pcs = init_pieces(init_board)
 init_board = pcs.initiate_white()
 init_board = pcs.initiate_black()
 
+# Make moves
 mk_mv = make_move(init_board, 'g', 6, 'g', 5)
 init_board = mk_mv.clear_position()
 init_board = mk_mv.move_position()
 
 print(init_board) 
-
-var_row = input("Please enter row: ")
-var_col = input("Please enter column: ")
-print("You entered:{},{} ".format(var_row, var_col))
