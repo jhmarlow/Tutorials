@@ -2,7 +2,7 @@
 import numpy as np
 import pandas as pd 
 
-
+ 
 class init_board():
     """Initliase dataframe to be used as board in the chess game.
 
@@ -66,57 +66,59 @@ class make_move():
         [DataFrame] -- Update dataframe
     """
 
-    def __init__(self, Board, x1, y1, x2, y2):
+    def __init__(self, Board, start_row=None, finish_row=None,
+                 start_col=None, finish_col=None, marker=None):
         self.Board = Board
-        self.x1 = x1 
-        self.y1 = y1
-        self.x2 = x2 
-        self.y2 = y2
-
-    def clear_position(self):
-        self.Board[self.x1][self.y1] = 0
-        return init_board
-
-    def move_position(self):
-        self.Board[self.x2][self.y2] = 2
-        return init_board
-
-
-class terminal_input():
-    
-    def __init__():
-        pass
+        self.start_row = start_row
+        self.start_col = start_col
+        self.finish_row = finish_row
+        self.finish_col = finish_col
+        self.marker = marker
     
     def position_to_start(self):
-        var_row = input("Please enter row: ")
-        var_col = input("Please enter column: ")
-        print("You entered:({},{}) to start".format(var_row, var_col))
-
-        position_to_start = [var_row, var_col]
-        return position_to_start
+        self.start_row = input("Please enter row: ")
+        self.start_col = input("Please enter column: ")
+        print("You entered:({},{}) to start".format(self.start_row,
+                                                    self.start_col))
 
     def position_to_finish(self):
-        var_row = input("Please enter row: ")
-        var_col = input("Please enter column: ")
-        print("You entered:({},{}) to finish".format(var_row, var_col))
+        self.finish_row = input("Please enter row: ")
+        self.finish_col = input("Please enter column: ")
+        print("You entered:({},{}) to finish".format(self.finish_row,
+                                                     self.finish_col))
 
-        position_to_finish = [var_row, var_col]
-        return position_to_finish
+    def move_position(self):
+        self.marker = self.Board[self.start_col][int(self.start_row)]
+        # don't replace pieces with zeros
+        if self.marker == 0:
+            self.marker = self.Board[self.finish_col][int(self.finish_row)]
+            print("No piece selected")
+        self.Board[self.start_col][int(self.start_row)] = 0
+        # detect piece type being moved
+        self.Board[self.finish_col][int(self.finish_row)] = self.marker
+        return board
 
 
 # Create board
 brd = init_board(8, 8)
-init_board = brd.create_board()
-init_board = brd.rename_rows(init_board)
+board = brd.create_board()
+board = brd.rename_rows(board)
 
 # Create pieces
-pcs = init_pieces(init_board)
-init_board = pcs.initiate_white()
-init_board = pcs.initiate_black()
+pcs = init_pieces(board)
+board = pcs.initiate_white()
+board = pcs.initiate_black()
+print(board)
 
-# Make moves
-mk_mv = make_move(init_board, 'g', 6, 'g', 5)
-init_board = mk_mv.clear_position()
-init_board = mk_mv.move_position()
+for x in range(0, 5):
+    # Make moves
+    mk_mv = make_move(board)
+    mk_mv.position_to_start()
+    mk_mv.position_to_finish()
+    # Update board
+    try:
+        mk_mv.move_position()
+    except Exception:
+        print("\n Msg: Coordinates do not exist please try again \n")
 
-print(init_board) 
+    print(board)
