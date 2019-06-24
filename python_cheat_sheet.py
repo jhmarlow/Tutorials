@@ -2,8 +2,8 @@
 import sys
 !{sys.executable} -m pip install <package>
 
-# Multiline editing
-Hold option
+# Multiline editing: Option
+# Box selection: Shift + Option
 
 # Quick docs
 select func, etc.
@@ -17,8 +17,10 @@ select
 press Ctrl + F2
 
 # Define linting strength by creating a .pylintrc file and enable/disable
-.pylintrc
+# .pylintrc
 
 # Capture requirements
+# Create 
 requirements.txt
+# See modules
 pip freeze

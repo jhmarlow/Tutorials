@@ -92,7 +92,7 @@ class make_move():
         # don't replace pieces with zeros
         if self.marker == 0:
             self.marker = self.Board[self.finish_col][int(self.finish_row)]
-            print("No piece selected")
+            print(" \n No piece selected \n ")
         self.Board[self.start_col][int(self.start_row)] = 0
         # detect piece type being moved
         self.Board[self.finish_col][int(self.finish_row)] = self.marker
